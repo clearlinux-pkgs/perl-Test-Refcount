@@ -4,7 +4,7 @@
 #
 Name     : perl-Test-Refcount
 Version  : 0.08
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Test-Refcount-0.08.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Test-Refcount-0.08.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtest-refcount-perl/libtest-refcount-perl_0.08-3.debian.tar.xz
@@ -68,6 +68,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/perl-Test-Refcount
 cp LICENSE %{buildroot}/usr/share/doc/perl-Test-Refcount/LICENSE
+cp deblicense/copyright %{buildroot}/usr/share/doc/perl-Test-Refcount/deblicense_copyright
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot}
 else
@@ -85,6 +86,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %files license
 %defattr(-,root,root,-)
 /usr/share/doc/perl-Test-Refcount/LICENSE
+/usr/share/doc/perl-Test-Refcount/deblicense_copyright
 
 %files man
 %defattr(-,root,root,-)
