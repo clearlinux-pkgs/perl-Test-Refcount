@@ -4,11 +4,11 @@
 #
 Name     : perl-Test-Refcount
 Version  : 0.08
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Test-Refcount-0.08.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Test-Refcount-0.08.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtest-refcount-perl/libtest-refcount-perl_0.08-3.debian.tar.xz
-Summary  : 'assert reference counts on objects'
+Summary  : assert reference counts on objects
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Test-Refcount-license = %{version}-%{release}
@@ -25,6 +25,7 @@ use Test::Refcount;
 Summary: dev components for the perl-Test-Refcount package.
 Group: Development
 Provides: perl-Test-Refcount-devel = %{version}-%{release}
+Requires: perl-Test-Refcount = %{version}-%{release}
 
 %description dev
 dev components for the perl-Test-Refcount package.
@@ -43,7 +44,7 @@ license components for the perl-Test-Refcount package.
 cd ..
 %setup -q -T -D -n Test-Refcount-0.08 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Test-Refcount-0.08/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Test-Refcount-0.08/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
