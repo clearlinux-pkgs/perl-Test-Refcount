@@ -1,5 +1,11 @@
 Revision history for Test-Refcount
 
+0.10    2019-06-26 11:28:13
+        [BUGFIXES]
+         * Fix unit tests to handle when both Devel::MAT and Devel::FindRef
+           are available (RT129908)
+           (No module code changes, purely tests)
+
 0.09    2019-06-25 21:06:57
         [CHANGES]
          * Add a `refcount()` function that callers can use to build
