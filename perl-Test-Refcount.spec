@@ -4,7 +4,7 @@
 #
 Name     : perl-Test-Refcount
 Version  : 0.10
-Release  : 19
+Release  : 20
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Test-Refcount-0.10.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Test-Refcount-0.10.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtest-refcount-perl/libtest-refcount-perl_0.08-3.debian.tar.xz
@@ -12,6 +12,7 @@ Summary  : 'assert reference counts on objects'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Test-Refcount-license = %{version}-%{release}
+Requires: perl-Test-Refcount-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -49,18 +50,28 @@ Group: Default
 license components for the perl-Test-Refcount package.
 
 
+%package perl
+Summary: perl components for the perl-Test-Refcount package.
+Group: Default
+Requires: perl-Test-Refcount = %{version}-%{release}
+
+%description perl
+perl components for the perl-Test-Refcount package.
+
+
 %prep
 %setup -q -n Test-Refcount-0.10
-cd ..
-%setup -q -T -D -n Test-Refcount-0.10 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libtest-refcount-perl_0.08-3.debian.tar.xz
+cd %{_builddir}/Test-Refcount-0.10
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Test-Refcount-0.10/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Test-Refcount-0.10/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -72,8 +83,8 @@ fi
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Test-Refcount
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Test-Refcount/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Test-Refcount/deblicense_copyright
+cp %{_builddir}/Test-Refcount-0.10/LICENSE %{buildroot}/usr/share/package-licenses/perl-Test-Refcount/ae5457947130c5a7a05fc82ca7baf0570bf57d00
+cp %{_builddir}/Test-Refcount-0.10/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Test-Refcount/9fc71e0e36d5040f660a2d715d7bd3c8e83a3364
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -86,7 +97,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Test/Refcount.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -94,5 +104,9 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Test-Refcount/LICENSE
-/usr/share/package-licenses/perl-Test-Refcount/deblicense_copyright
+/usr/share/package-licenses/perl-Test-Refcount/9fc71e0e36d5040f660a2d715d7bd3c8e83a3364
+/usr/share/package-licenses/perl-Test-Refcount/ae5457947130c5a7a05fc82ca7baf0570bf57d00
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Test/Refcount.pm
