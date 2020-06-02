@@ -4,7 +4,7 @@
 #
 Name     : perl-Test-Refcount
 Version  : 0.10
-Release  : 21
+Release  : 22
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Test-Refcount-0.10.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Test-Refcount-0.10.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtest-refcount-perl/libtest-refcount-perl_0.08-3.debian.tar.xz
@@ -109,4 +109,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.2/Test/Refcount.pm
+/usr/lib/perl5/vendor_perl/5.30.3/Test/Refcount.pm
